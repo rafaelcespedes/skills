@@ -1,0 +1,28 @@
+---
+const { title = "Mira Okafor" } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <script is:inline>
+    const t = localStorage.getItem("mira-theme"); if (t) document.documentElement.dataset.theme = t;
+  </script>
+  <style is:global>
+    :root, [data-theme="dark"] { --bg: #101114; --card: #17181c; --ink: #F2F1EE; --ink-2: #B5B3AE; --ink-3: #7A7873; --rule: #2A2B30; }
+    [data-theme="light"] { --bg: #F7F5F0; --card: #EFECE5; --ink: #1A1A1A; --ink-2: #4D4B47; --ink-3: #8A8780; --rule: #DDD8CF; }
+    body { background: var(--bg); color: var(--ink-2); font-family: Inter, system-ui, sans-serif; margin: 0; padding: 2rem; }
+    h1, h2, a { color: var(--ink); } code, .mono { font-family: "IBM Plex Mono", monospace; }
+    footer { border-top: 1px solid var(--rule); margin-top: 4rem; padding-top: 1rem; color: var(--ink-3); }
+  </style>
+</head>
+<body>
+  <header><a href="/">Mira Okafor</a> · <a href="/about">About</a></header>
+  <slot />
+  <footer>© 2026 Mira Okafor · <a href="mailto:hello@miraokafor.design">hello@miraokafor.design</a> · <button id="t" onclick="const n=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=n;localStorage.setItem('mira-theme',n)">Theme</button></footer>
+</body>
+</html>

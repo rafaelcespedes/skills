@@ -1,0 +1,9 @@
+---
+import Base from "../layouts/Base.astro";
+import { person, projects } from "../data/projects.js";
+---
+<Base>
+  <h1>{person.name}</h1>
+  <p>{person.tagline}</p>
+  <ul>{projects.map((p) => <li><a href={`/work/${p.slug}`}>{p.title}</a> {p.locked && "🔒"} — {p.year}</li>)}</ul>
+</Base>

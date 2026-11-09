@@ -1,0 +1,6 @@
+# No AI training on my drawings.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: *
+Allow: /

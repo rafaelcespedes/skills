@@ -1,0 +1,8 @@
+{
+  "me": { "name": "Sam Rivera", "headline": "Motion designer and brand director in Mexico City.", "email": "sam@samrivera.mx", "instagram": "https://instagram.com/samrivera.mov", "vimeo": "https://vimeo.com/samrivera" },
+  "work": [
+    { "id": "aurora-festival", "name": "Aurora Festival", "when": "2025", "type": ["Motion", "Brand"], "what": "Title sequence and identity for a film festival in Monterrey. 14 animated idents, 3 trailers.", "details": "<p>We built the identity from a single <em>light leak</em> filmed on 16mm.</p><p>Watch the <a href=\"https://vimeo.com/123\">main trailer</a>.</p>", "media": ["/work-img/aurora.mp4", "/work-img/aurora-still.webp"] },
+    { "id": "casa-maiz", "name": "Casa Maíz", "when": "2024", "type": ["Brand"], "what": "Packaging and logo for a tortilleria chain with 12 shops.", "details": "", "media": ["/work-img/maiz.webp"] },
+    { "id": "old-site", "name": "My old studio site", "when": "2018", "type": ["Web"], "what": "My first portfolio.", "details": "", "media": [] }
+  ]
+}

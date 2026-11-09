@@ -1,0 +1,15 @@
+---
+/**
+ * /agents: the agent view, shown to people, styled as a code editor.
+ * The page is built by door-policy/page.mjs from the same data as the agent
+ * files; colours, fonts and copy are in door-policy/config.mjs.
+ *
+ * This version is a standalone page. To put it inside the site's own layout
+ * instead, see the skill's references/agents-page.md § Inside the layout.
+ */
+import { getView } from "../../door-policy/view.mjs";
+import { agentsPage } from "../../door-policy/page.mjs";
+
+const html = agentsPage(await getView());
+---
+<Fragment set:html={html} />

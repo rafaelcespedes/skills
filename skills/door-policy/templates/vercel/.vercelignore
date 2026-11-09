@@ -1,0 +1,6 @@
+# Kept out of the deploy on routes that serve the project root (plain HTML):
+# the coding agent's own folders and lock file. Never list middleware.js or
+# package.json here: the deploy needs them (vercel.json redirects those).
+.agents
+.claude
+skills-lock.json

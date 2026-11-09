@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://miraokafor.design/sitemap-index.xml

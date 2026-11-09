@@ -1,0 +1,132 @@
+{
+  "skill_name": "door-policy",
+  "about": "Cases where earlier reviews found bugs. Copy a fixture to a scratch folder, give the agent the prompt with that folder as its project, then check the expectations. Fixtures are sites before the skill ran.",
+  "evals": [
+    {
+      "id": "astro-portfolio",
+      "prompt": "Add an agent view to my site. Use the defaults.",
+      "files": [
+        "fixtures/astro-portfolio/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "Endpoints from templates/astro are in src/pages and the build succeeds",
+        "Base.astro renders view.headTags(), with JSON-LD on the homepage only",
+        "robots.txt keeps the Sitemap line and gains one marked door-policy block",
+        "verify.mjs passes open with --write and closed",
+        "The footer has a visible For agents link"
+      ]
+    },
+    {
+      "id": "door-policy-ask",
+      "prompt": "Set up a door policy for my site.",
+      "files": [
+        "fixtures/astro-portfolio/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "The agent asks five questions in one message, the first being how AI should treat the site (anything / files first / no AI) with the training follow-up",
+        "Files first by default: user-fetch agents (Claude-User, ChatGPT-User…) get 'Allow: /$'; crawlers don't",
+        "The middleware is installed even without the guest book, and verify passes the markdown-on-request checks",
+        "robots.txt image Allow lines name the exact files the agent files list (e.g. Allow: /projects/tidewater/01.jpg$), never a file type like /*.jpg$; the locked secret-thing project is named nowhere"
+      ]
+    },
+    {
+      "id": "rather-ai-didnt",
+      "prompt": "I'd rather AI didn't read my pages. Can you set that up?",
+      "files": [
+        "fixtures/plain-html/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "The request maps to files first with training set to \"no\" (or the agent asks, naming both choices), never files first with training unstated",
+        "Training crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended…) get Disallow: / and can't read /work/*.md or any image",
+        "/.well-known/tdmrep.json and the tdm-reservation tag are present, and /agents calls them a stated reservation, not a lock",
+        "The hand-off says what files first does and doesn't do in plain words"
+      ]
+    },
+    {
+      "id": "plain-html",
+      "prompt": "Add an agent view to my site.",
+      "files": [
+        "fixtures/plain-html/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "The agent asks the five questions in one message with defaults (the AI question first, with its training follow-up), or lists the defaults if it can't ask",
+        "drafts/battery-dashboard.html and the work behind js/gate.js are named in no generated file, in content.mjs or in package.json",
+        "The hand-off mentions the client-side password gate and the drafts folder as publicly served, without copying their content",
+        "vercel.json redirects /door-policy, /package.json and /middleware.js; .vercelignore is present",
+        "robots.txt keeps 'Disallow: /drafts/' and the Sitemap line"
+      ]
+    },
+    {
+      "id": "spanish-no-projects",
+      "prompt": "Quiero que los agentes de IA puedan leer mi web. Usa lo que venga por defecto.",
+      "files": [
+        "fixtures/spanish-no-projects/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "config.mjs has lang: \"es\"",
+        "llms.txt and /agents never promise case studies (no 'case studies included', no /work row)",
+        "The guest book defaults to off unless the agent confirms the site is on Vercel",
+        "The person's name and the site's Spanish text are used as written"
+      ]
+    },
+    {
+      "id": "stop-ai-scraping",
+      "prompt": "I don't want AI companies scraping my portfolio or training on my work. Can you stop that?",
+      "files": [
+        "fixtures/plain-html/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "The skill triggers and recommends 'no AI at all' (reading: \"no-ai\")",
+        "The agent says plainly that robots.txt is a stated wish, not a lock: training and search crawlers say they follow it, some person-triggered tools say it may not apply, nothing enforces it",
+        "robots.txt has every AI_CRAWLERS name and the ai.robots.txt snapshot (credited, dated) under Disallow: /, the __usage_ai-training group and the Content Signals text with its Article 4 reservation; Applebot is not blocked",
+        "No page links to /llms.txt in its head; the bingbot ai-training and ai-grounding tags and the tdm-reservation tag are present; /.well-known/tdmrep.json exists",
+        "Only /llms.txt is published (no /llms-full.txt, /profile.json or /work/*.md), with who the person is and how to get in touch; /agents is titled 'About AI on this site'",
+        "The guest book defaults to off, offered as a counter of the AI tools that came anyway"
+      ]
+    },
+    {
+      "id": "vite-spa",
+      "prompt": "Add an agent view to my React site.",
+      "files": [
+        "fixtures/vite-spa/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "The For agents link is in index.html's static markup, outside #root",
+        "The catch-all rewrite is narrowed so /work/nope.md is a 404",
+        "verify.mjs passes against local-server.mjs with --static dist (no false failures from the catch-all)"
+      ]
+    },
+    {
+      "id": "robots-gptbot-block",
+      "prompt": "Add an agent view to my site, files first please.",
+      "files": [
+        "fixtures/robots-gptbot-block/"
+      ],
+      "should_trigger": true,
+      "expectations": [
+        "The agent asks whether to keep the existing complete GPTBot block (default: keep)",
+        "After the build, GPTBot is still kept out of everything (no Allow lines name it)",
+        "The person's comment and groups outside the door-policy markers are unchanged",
+        "verify.mjs passes, noting GPTBot is stricter than files first"
+      ]
+    },
+    {
+      "id": "seo-not-trigger",
+      "prompt": "Can you improve my site's SEO? Titles, meta descriptions, that kind of thing.",
+      "files": [
+        "fixtures/plain-html/"
+      ],
+      "should_trigger": false,
+      "expectations": [
+        "door-policy is not used"
+      ]
+    }
+  ]
+}

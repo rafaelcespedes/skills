@@ -1,0 +1,7 @@
+---
+import Base from "../../layouts/Base.astro";
+import { projects } from "../../data/projects.js";
+export function getStaticPaths() { return projects.filter((p) => !p.locked).map((p) => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props;
+---
+<Base title={p.title}><h1>{p.title}</h1><p>{p.intro}</p><Fragment set:html={p.body || "<p>Case study coming soon.</p>"} />{p.images.map((i) => <img src={i} alt="" width="200" />)}</Base>

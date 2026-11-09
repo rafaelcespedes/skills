@@ -1,0 +1,5 @@
+---
+import Base from "../layouts/Base.astro";
+import { person } from "../data/projects.js";
+---
+<Base title="About"><h1>About</h1>{person.about.map((p) => <p set:html={p} />)}</Base>

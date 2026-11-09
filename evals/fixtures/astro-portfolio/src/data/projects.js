@@ -1,0 +1,56 @@
+export const person = {
+  name: "Mira Okafor",
+  tagline: "Product designer working on tools for people who fix things. Based in Lisbon, working with teams in Europe and West Africa.",
+  email: "hello@miraokafor.design",
+  links: { LinkedIn: "https://www.linkedin.com/in/miraokafor", Instagram: "https://instagram.com/mira.makes" },
+  about: [
+    "I've spent nine years designing software for field technicians, repair shops and the people who keep infrastructure running.",
+    "Before that I studied industrial design at <a href=\"https://www.tudelft.nl\">TU Delft</a>, which is why I still sketch everything on paper first.",
+  ],
+};
+
+export const projects = [
+  {
+    slug: "tidewater",
+    title: "Tidewater",
+    year: 2025,
+    categories: ["Product", "Research"],
+    role: "Lead product designer",
+    client: "Tidewater Utilities",
+    intro: "A field app for water-network technicians that cut the time to log a repair from twelve minutes to three. Built with 40 technicians over six months.",
+    body: `<h2>The problem</h2><p>Technicians were logging repairs on paper, then retyping them at the depot. <strong>One in five</strong> logs had a wrong location.</p><h2>What we did</h2><ul><li>Rode along on 22 shifts</li><li>Prototyped a one-thumb logging flow</li><li>Shipped offline-first sync</li></ul><p>Read the <a href="/writing/offline-first">longer write-up</a>.</p>`,
+    images: ["/projects/tidewater/01.jpg", "/projects/tidewater/02.jpg"],
+  },
+  {
+    slug: "halo-bank",
+    title: "Halo Bank",
+    year: 2023,
+    categories: ["Product", "Visual"],
+    role: "Senior designer",
+    client: "Halo",
+    intro: "Rebuilt the savings experience for a challenger bank in Lagos; 1.2M people use it monthly.",
+    body: "",
+    images: ["/projects/halo-bank/cover.png"],
+  },
+  {
+    slug: "secret-thing",
+    title: "Unannounced hardware",
+    year: 2026,
+    categories: ["Product"],
+    role: "Design lead",
+    intro: "Under NDA.",
+    body: "<p>Confidential.</p>",
+    images: [],
+    locked: true,
+  },
+  {
+    slug: "fieldnotes",
+    title: "Fieldnotes",
+    year: 2022,
+    categories: ["Visual"],
+    role: "Designer and illustrator",
+    intro: "An illustrated zine about the tools repair people make for themselves.",
+    body: "<p>Printed in an edition of 300 on a Risograph.</p><figure><img src=\"/projects/fieldnotes/spread.jpg\" alt=\"Spread\"><figcaption>The centre spread</figcaption></figure>",
+    images: ["/projects/fieldnotes/spread.jpg"],
+  },
+];
